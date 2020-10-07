@@ -18,9 +18,11 @@ we can acces them from the browser, and watch the metrics.
 ### Starting the environment
 To run any of the commands, we have to ensure that we open a terminal and navigate to the path where this readme is located.
 
+```
 docker-compose up -d prometheus
 docker-compose up -d grafana
 docker-compose up -d --build python-application
+```
 
 
 
