@@ -1,6 +1,5 @@
 from flask import Response, Flask, request
 import prometheus_client
-from prometheus_client.core import CollectorRegistry
 from prometheus_client import Summary, Counter, Histogram, Gauge
 import time
 
@@ -16,7 +15,7 @@ graphs['h'] = Histogram('python_request_duration_seconds', 'Histogram for the du
 def hello():
     start = time.time()
     graphs['c'].inc()
-    
+
     time.sleep(0.600)
     end = time.time()
     graphs['h'].observe(end - start)
@@ -28,3 +27,7 @@ def requests_count():
     for k,v in graphs.items():
         res.append(prometheus_client.generate_latest(v))
     return Response(res, mimetype="text/plain")
+
+
+if __name__ == "__main__":
+    app.run(port=90)

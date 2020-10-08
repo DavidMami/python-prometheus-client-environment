@@ -6,7 +6,7 @@ services:
     container_name: python-application
     image: python-application
     ports:
-      - "90:5000"
+      - "90:8000"
   prometheus:
     container_name: prometheus-svc
     image: prom/prometheus
@@ -16,10 +16,11 @@ services:
     volumes:
       - ./prometheus.yaml:/etc/prometheus/prometheus.yaml
   grafana:
+    container_name: grafana-svc
     image: grafana/grafana
     ports:
       - "3000:3000"
-    user: "104"
+    user: "104" 
     environment:
       - GF_AUTH_BASIC_ENABLED=false
       - GF_AUTH_ANONYMOUS_ENABLED=true
